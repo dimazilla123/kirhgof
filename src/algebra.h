@@ -7,6 +7,6 @@ template<typename T>
 std::vector<T> solve(const Matrix<T>& m);
 
 template<typename T>
-std::vector<T> solve(const Matrix<T>& m, size_t variables_cnt);
+std::vector<T>& solve(const Matrix<T>& m, size_t variables_cnt);
 
 #endif

@@ -12,10 +12,14 @@ std::vector<T> solve(const Matrix<T>& m)
 }
 
 template<typename T>
-std::vector<T> solve(const Matrix<T>& m, size_t variables_cnt)
+std::vector<T>& solve(const Matrix<T>& m, size_t variables_cnt)
 {
     if (variables_cnt == 1)
-        return std::vector<T>({*(m[0].end()--) / m[0][0]});
+    {
+        std::vector<T> ret(m.getWidth(), 0);
+        ret[0] = *(m[0].end()--) / m[0][0];
+        return ret;
+    }
     else
     {
         T prod = m[0][variables_cnt - 1];
@@ -34,6 +38,14 @@ std::vector<T> solve(const Matrix<T>& m, size_t variables_cnt)
                     val = val * mul;
                 });
         }
-        
+        for (int i = 0; i < variables_cnt - 1; ++i)
+            for (int j = 0; j < variables_cnt; ++j)
+                m[i][j] = m[i][j] - m[variables_cnt - 1][j];
+        std::vector<T> ret = solve(m, variables_cnt - 1);
+        T c = -*(m[variables_cnt - 1].end()--);
+        for (int i = 0; i < variables_cnt - 1; ++i)
+            c -= m[variables_cnt - 1][i] * ret[i];
+        ret[variables_cnt - 1] = c / m[variables_cnt = 1][variables_cnt - 1];
+        return ret;
     }
 }
