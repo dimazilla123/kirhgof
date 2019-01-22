@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include "fractions.h"
 
 template<typename T>
 Matrix<T>::Matrix(size_t height_, size_t width_)
@@ -66,22 +67,30 @@ Line<T> Line<T>::operator--(int)
 }
 
 template<typename T>
-MatrixIterator<T> Matrix<T>::begin()
+Line<T> Matrix<T>::begin()
 {
-    return MatrixIterator<T>{ .data_ = Line<T>{
+    return Line<T>{
         .mat = this,
         .pos = 0
-    }};
+    };
 }
 
 template<typename T>
-MatrixIterator<T> Matrix<T>::end()
+Line<T> Matrix<T>::end()
 {
-    return MatrixIterator<T>{ .data_ = Line<T>{
+    return Line<T>{
         .mat = this,
         .pos = height
-    }};
+    };
+}
+
+template<typename T>
+bool Line<T>::operator!=(const Line<T>& other) const
+{
+    return pos != other.pos;
 }
 
 template struct Line<int>;
 template class Matrix<int>;
+template struct Line<Fractional<int>>;
+template class Matrix<Fractional<int>>;

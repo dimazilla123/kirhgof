@@ -16,6 +16,8 @@ struct Line
     Line& operator++();
     Line operator--(int);
     Line operator++(int);
+    Line& operator*() {return *this;};
+    bool operator!=(const Line& other) const;
 };
 
 template<typename T>
@@ -40,7 +42,7 @@ public:
     size_t getHeight() const;
     size_t getWidth() const;
     Line<T>& operator[](size_t pos);
-    MatrixIterator<T> begin();
-    MatrixIterator<T> end();
+    Line<T> begin();
+    Line<T> end();
 };
 #endif /* MATRIX_H */

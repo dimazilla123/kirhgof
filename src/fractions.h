@@ -1,6 +1,8 @@
 #ifndef FRACTIONS_H
 #define FRACTIONS_H
 
+#include <ostream>
+
 template<typename T>
 struct Fractional
 {
@@ -13,5 +15,8 @@ struct Fractional
     Fractional<T> operator*(const Fractional<T>& other) const;
     Fractional<T> operator/(const Fractional<T>& other) const;
 };
+
+template<typename T>
+std::ostream& operator<<(std::ostream& out, const Fractional<T>& n);
 
 #endif

@@ -19,7 +19,22 @@ int main(int argc, char const *argv[])
         vh.addEdge(a - 1, b - 1, ResistanceType(num, dem));
     }
 
-    Matrix<int> mat(n, n);
+    Matrix<Fractional<int>> mat(n, n);
+    for (auto &l : mat)
+    {
+        static int j = 0;
+        for (int i = 0; i < n; ++i)
+        {
+            l[i] = i + j;
+        }
+        ++j;
+    }
+    for (auto line : mat)
+    {
+        for (int i = 0; i < n; ++i)
+            std::cout << line[i] << ' ';
+        std::cout << '\n';
+    }
 
     return 0;
 }

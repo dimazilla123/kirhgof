@@ -6,6 +6,7 @@
 #include "matrix.h"
 
 using ResistanceType = Fractional<int>;
+using PowerType = Fractional<int>;
 
 struct Edge
 {
@@ -13,6 +14,7 @@ struct Edge
     size_t from;
     size_t edge_num;
     ResistanceType resistance;
+    PowerType power;
 };
 
 class VertexHandler

@@ -17,11 +17,7 @@ Fractional<T> Fractional<T>::operator+(const Fractional<T> &other) const
 {
     T mul1 = denominator;
     T mul2 = other.denominator;
-    denominator *= mul2;
-    numerator *= mul2;
-    other.denominator *= mul1;
-    other.numerator *= mul1;
-    Fractional<T> ret(numerator + other.numerator, mul1 * mul2);
+    Fractional<T> ret(numerator * mul2 + other.numerator * mul1, mul1 * mul2);
     T del = gcd(ret.numerator, ret.denominator);
     ret.denominator /= del;
     ret.numerator /= del;
@@ -50,3 +46,12 @@ Fractional<T> Fractional<T>::operator/(const Fractional<T> &other) const
     Fractional<T> mul(other.denominator, other.numerator);
     return (*this) * mul;
 }
+
+template<typename T>
+std::ostream& operator<<(std::ostream& out, const Fractional<T>& n)
+{
+    return out << n.numerator << '/' << n.denominator;
+}
+
+template struct Fractional<int>;
+template std::ostream& operator<<(std::ostream& out, const Fractional<int>& n);
