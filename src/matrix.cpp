@@ -66,21 +66,21 @@ Line<T> Line<T>::operator--(int)
 }
 
 template<typename T>
-Line<T> Matrix<T>::begin()
+MatrixIterator<T> Matrix<T>::begin()
 {
-    return Line<T>{
+    return MatrixIterator<T>{ .data_ = Line<T>{
         .mat = this,
         .pos = 0
-    };
+    }};
 }
 
 template<typename T>
-Line<T> Matrix<T>::end()
+MatrixIterator<T> Matrix<T>::end()
 {
-    return Line<T>{
+    return MatrixIterator<T>{ .data_ = Line<T>{
         .mat = this,
         .pos = height
-    };
+    }};
 }
 
 template struct Line<int>;
