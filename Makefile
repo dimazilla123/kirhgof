@@ -1,7 +1,7 @@
 SRC_DIR = src
 OBJ_DIR = obj
 
-MODULES = main matrix
+MODULES = main matrix vertex_handler fractions
 
 OUT_FILE = kirhgoph
 

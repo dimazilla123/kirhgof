@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include <vector>
 
 template<typename T>
@@ -10,6 +12,10 @@ struct Line
     Matrix<T>* mat;
     size_t pos;
     T& operator[](size_t pos);
+    Line& operator--();
+    Line& operator++();
+    Line operator--(int);
+    Line operator++(int);
 };
 
 template<typename T>
@@ -17,10 +23,13 @@ class Matrix
 {
 private:
     size_t height, width;
-    std::vector<T> arr;
 public:
+    std::vector<T> arr;
     Matrix(size_t height_, size_t width_);
     size_t getHeight() const;
     size_t getWidth() const;
     Line<T>& operator[](size_t pos);
+    Line<T> begin();
+    Line<T> end();
 };
+#endif /* MATRIX_H */

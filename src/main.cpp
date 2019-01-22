@@ -4,14 +4,22 @@
 #include <algorithm>
 
 #include "matrix.h"
+#include "vertex_handler.h"
 
 int main(int argc, char const *argv[])
 {
-    Matrix<int> mat(10, 10);
-    for (int i = 0; i < 10; ++i)
-        for (int j = 0; j < 10; ++j)
-            mat[i][j] = i + j;
-    
-    
+    int n, m;
+    std::cin >> n >> m;
+    VertexHandler vh(n);
+
+    for (int i = 0; i < m; ++i)
+    {
+        int a, b, num, dem;
+        std::cin >> a >> b >> num >> dem;
+        vh.addEdge(a - 1, b - 1, ResistanceType(num, dem));
+    }
+
+    Matrix<int> mat(n, n);
+
     return 0;
 }
