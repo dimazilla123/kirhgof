@@ -7,6 +7,19 @@ template<typename T>
 class Matrix;
 
 template<typename T>
+struct Point
+{
+    Matrix<T>* mat;
+    size_t x, y;
+    bool operator!=(const Point& other) const;
+    Point& operator++();
+    Point& operator--();
+    Point operator++(int);
+    Point operator--(int);
+    T& operator*() {return (*mat)[x][y];};
+};
+
+template<typename T>
 struct Line
 {
     Matrix<T>* mat;
@@ -17,17 +30,9 @@ struct Line
     Line operator--(int);
     Line operator++(int);
     Line& operator*() {return *this;};
+    Point<T> begin();
+    Point<T> end();
     bool operator!=(const Line& other) const;
-};
-
-template<typename T>
-struct MatrixIterator
-{
-    Line<T> data_;
-    Line<T> operator*()
-    {
-        return data_;
-    }
 };
 
 template<typename T>

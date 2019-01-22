@@ -33,7 +33,7 @@ size_t Matrix<T>::getWidth() const
 template<typename T>
 T& Line<T>::operator[](size_t inline_pos)
 {
-    return mat->arr[mat->getWidth() * pos + inline_pos];
+    return mat->arr[mat->getHeight() * pos + inline_pos];
 }
 
 template<typename T>
@@ -90,7 +90,62 @@ bool Line<T>::operator!=(const Line<T>& other) const
     return pos != other.pos;
 }
 
+template<typename T>
+Point<T> Line<T>::begin()
+{
+    return Point<T>{
+        .mat = mat,
+        .x = 0,
+        .y = pos
+    };
+}
+
+template<typename T>
+Point<T> Line<T>::end()
+{
+    return Point<T>{
+        .mat = mat,
+        .x = mat->getWidth(),
+        .y = pos
+    };
+}
+
+template<typename T>
+Point<T>& Point<T>::operator++()
+{
+    ++x;
+    return *this;
+}
+
+template<typename T>
+Point<T>& Point<T>::operator--()
+{
+    --x;
+    return *this;
+}
+
+template<typename T>
+Point<T> Point<T>::operator++(int)
+{
+    ++x;
+    return *this;
+}
+
+template<typename T>
+Point<T> Point<T>::operator--(int)
+{
+    --x;
+    return *this;
+}
+
+template<typename T>
+bool Point<T>::operator!=(const Point<T>& other) const
+{
+    return x != other.x;
+}
+
 template struct Line<int>;
 template class Matrix<int>;
+template struct Point<Fractional<int>>;
 template struct Line<Fractional<int>>;
 template class Matrix<Fractional<int>>;
