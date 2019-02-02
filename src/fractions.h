@@ -14,6 +14,14 @@ struct Fractional
     Fractional<T> operator-(const Fractional<T>& other) const;
     Fractional<T> operator*(const Fractional<T>& other) const;
     Fractional<T> operator/(const Fractional<T>& other) const;
+    Fractional<T> operator%(const Fractional<T>& other) const;
+    Fractional<T>& operator+=(const Fractional<T>& other);
+    Fractional<T>& operator-=(const Fractional<T>& other);
+    Fractional<T>& operator*=(const Fractional<T>& other);
+    Fractional<T>& operator/=(const Fractional<T>& other);
+    Fractional<T>& operator%=(const Fractional<T>& other);
+    bool operator!=(const Fractional<T>& other) const;
+    bool operator==(const Fractional<T>& other) const;
 };
 
 template<typename T>

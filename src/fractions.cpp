@@ -48,10 +48,60 @@ Fractional<T> Fractional<T>::operator/(const Fractional<T> &other) const
 }
 
 template<typename T>
+Fractional<T> Fractional<T>::operator%(const Fractional<T> &other) const
+{
+    auto [p, q] = *this;
+    auto [x, y] = other;
+    return Fractional<T>(p * y % q * x, q * y);
+}
+
+template<typename T>
+Fractional<T>& Fractional<T>::operator%=(const Fractional<T> &other)
+{
+    *this = (*this) % other;
+    return *this;
+}
+
+template<typename T>
 std::ostream& operator<<(std::ostream& out, const Fractional<T>& n)
 {
     return out << n.numerator << '/' << n.denominator;
 }
 
+template<typename T>
+Fractional<T>& Fractional<T>::operator+=(const Fractional<T> &other)
+{
+    *this = *this + other;
+    return *this;
+}
+template<typename T>
+Fractional<T>& Fractional<T>::operator-=(const Fractional<T> &other)
+{
+    *this = *this - other;
+    return *this;
+}
+template<typename T>
+Fractional<T>& Fractional<T>::operator*=(const Fractional<T> &other)
+{
+    *this = *this * other;
+    return *this;
+}
+template<typename T>
+Fractional<T>& Fractional<T>::operator/=(const Fractional<T> &other)
+{
+    *this = *this / other;
+    return *this;
+}
+
+template<typename T>
+bool Fractional<T>::operator==(const Fractional<T> &other) const
+{
+    return numerator * other.denominator == other.numerator * denominator;
+}
+template<typename T>
+bool Fractional<T>::operator!=(const Fractional<T> &other) const
+{
+    return numerator * other.denominator != other.numerator * denominator;
+}
 template struct Fractional<int>;
 template std::ostream& operator<<(std::ostream& out, const Fractional<int>& n);
