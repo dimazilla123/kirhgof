@@ -6,7 +6,7 @@ Matrix<T>::Matrix(size_t height_, size_t width_)
 {
     height = height_;
     width = width_;
-    arr.resize(height * width_);
+    arr.resize(height_ * width_);
 }
 
 template<typename T>
@@ -33,7 +33,7 @@ size_t Matrix<T>::getWidth() const
 template<typename T>
 T& Line<T>::operator[](size_t inline_pos)
 {
-    return mat->arr[mat->getHeight() * pos + inline_pos];
+    return mat->arr[mat->getWidth() * pos + inline_pos];
 }
 
 template<typename T>
@@ -111,6 +111,12 @@ Point<T> Line<T>::end()
 }
 
 template<typename T>
+T& Line<T>::back()
+{
+    return this->operator[](mat->getWidth() - 1);
+}
+
+template<typename T>
 Point<T>& Point<T>::operator++()
 {
     ++x;
@@ -144,8 +150,12 @@ bool Point<T>::operator!=(const Point<T>& other) const
     return x != other.x;
 }
 
+template struct Point<int>;
 template struct Line<int>;
 template class Matrix<int>;
 template struct Point<Fractional<int>>;
 template struct Line<Fractional<int>>;
 template class Matrix<Fractional<int>>;
+template struct Point<std::pair<int, int>>;
+template struct Line<std::pair<int, int>>;
+template class Matrix<std::pair<int, int>>;

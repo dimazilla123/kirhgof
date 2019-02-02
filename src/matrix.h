@@ -25,6 +25,7 @@ struct Line
     Matrix<T>* mat;
     size_t pos;
     T& operator[](size_t pos);
+    T& back();
     Line& operator--();
     Line& operator++();
     Line operator--(int);
