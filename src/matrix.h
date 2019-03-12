@@ -16,7 +16,7 @@ struct Point
     Point& operator--();
     Point operator++(int);
     Point operator--(int);
-    T& operator*() {return (*mat)[x][y];};
+    T& operator*() {return (*mat)[y][x];};
 };
 
 template<typename T>
@@ -42,11 +42,12 @@ class Matrix
 private:
     size_t height, width;
 public:
-    
     std::vector<T> arr;
     Matrix(size_t height_, size_t width_);
     size_t getHeight() const;
     size_t getWidth() const;
+    void addLines(size_t cnt);
+    void addLine();
     Line<T>& operator[](size_t pos);
     Line<T> begin();
     Line<T> end();

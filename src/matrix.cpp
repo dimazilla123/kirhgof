@@ -113,7 +113,7 @@ Point<T> Line<T>::end()
 template<typename T>
 T& Line<T>::back()
 {
-    return this->operator[](mat->getWidth() - 1);
+    return *(this->end()--);
 }
 
 template<typename T>
@@ -148,6 +148,19 @@ template<typename T>
 bool Point<T>::operator!=(const Point<T>& other) const
 {
     return x != other.x;
+}
+
+template<typename T>
+void Matrix<T>::addLines(size_t cnt)
+{
+    arr.resize(arr.size() + cnt * width);
+    height += cnt;
+}
+
+template<typename T>
+void Matrix<T>::addLine()
+{
+    addLines(1);
 }
 
 template struct Point<int>;
