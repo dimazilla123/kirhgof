@@ -69,6 +69,14 @@ std::ostream& operator<<(std::ostream& out, const Fractional<T>& n)
 }
 
 template<typename T>
+std::istream& operator>>(std::istream& in, Fractional<T>& n)
+{
+    in >> n.numerator;
+    n.denominator = 1;
+    return in;
+}
+
+template<typename T>
 Fractional<T>& Fractional<T>::operator+=(const Fractional<T> &other)
 {
     *this = *this + other;
@@ -105,3 +113,4 @@ bool Fractional<T>::operator!=(const Fractional<T> &other) const
 }
 template struct Fractional<int>;
 template std::ostream& operator<<(std::ostream& out, const Fractional<int>& n);
+template std::istream& operator>>(std::istream& in, Fractional<int>& n);

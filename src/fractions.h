@@ -2,6 +2,7 @@
 #define FRACTIONS_H
 
 #include <ostream>
+#include <istream>
 
 template<typename T>
 struct Fractional
@@ -26,5 +27,8 @@ struct Fractional
 
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const Fractional<T>& n);
+
+template<typename T>
+std::istream& operator>>(std::istream& in, Fractional<T>& n);
 
 #endif
